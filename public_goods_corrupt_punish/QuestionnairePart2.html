@@ -1,0 +1,37 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}{{ endblock }}
+
+{{ block content }}
+<style>
+    /* 保持顶部间距一致 */
+    .otree-title, h1 { visibility: hidden !important; }
+    
+    /* 缩小表单项之间的间距以避免滚动 */
+    .mb-3 { margin-bottom: 8px !important; }
+    .form-group { margin-bottom: 8px !important; }
+
+    /* 将单选项变成横向排列 */
+    .form-check { 
+        display: inline-block; 
+        margin-right: 20px; 
+        margin-bottom: 0;
+    }
+    
+    .form-label, label { 
+        margin-bottom: 2px !important; 
+        font-size: 1rem; 
+        font-weight: 500;
+    }
+</style>
+
+<!-- 自定义字号略大一点点的标题 -->
+<h4 style="margin-bottom: 20px; font-weight: bold; font-size: 1.25rem;">问卷第二部分：请您回忆刚才的感受，完成以下游戏体验评估</h4>
+
+    {{ formfields }}
+
+    <div style="margin-top: 30px;">
+        <button class="otree-btn-next btn btn-primary" style="float: right;">下一页</button>
+    </div>
+
+{{ endblock }}

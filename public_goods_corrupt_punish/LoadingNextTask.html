@@ -1,0 +1,24 @@
+{{ extends "global/Page.html" }}
+{{ block title }}{{ endblock }}
+{{ block content }}
+<div style="text-align: center; margin-top: 50px;">
+    <h3>加载中</h3>
+</div>
+
+<style>
+    .otree-title, h1 {
+        visibility: hidden !important;
+    }
+    .otree-btn-next {
+        display: none !important;
+    }
+</style>
+
+<script>
+    const waitTimeMs = Math.floor(Math.random() * 301) + 500;
+
+    setTimeout(function () {
+        document.getElementById('form').submit();
+    }, waitTimeMs);
+</script>
+{{ endblock }}

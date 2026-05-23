@@ -1,0 +1,44 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}{{ endblock }}
+
+{{ block content }}
+<style>
+    /* 保持顶部间距一致 */
+    .otree-title, h1 { visibility: hidden !important; }
+    
+    /* 缩小表单项之间的间距以避免滚动 */
+    .mb-3 { margin-bottom: 8px !important; }
+    .form-group { margin-bottom: 8px !important; }
+    
+    /* 调整标签文字大小和下边距 */
+    .form-label, label { 
+        margin-bottom: 2px !important; 
+        font-size: 1rem; 
+        font-weight: 500;
+    }
+    
+    /* 减小输入框的高度和内边距 */
+    .form-control { 
+        padding: 4px 8px; 
+        height: auto; 
+    }
+    
+    /* 将单选项变成横向排列，大幅节省垂直空间 */
+    .form-check { 
+        display: inline-block; 
+        margin-right: 20px; 
+        margin-bottom: 0;
+    }
+</style>
+
+<!-- 自定义字号略大一点点的标题 -->
+<h4 style="margin-bottom: 15px; font-weight: bold; font-size: 1.25rem;">问卷第一部分：基本信息</h4>
+
+    {{ formfields }}
+
+    <div style="margin-top: 15px;">
+        <button class="otree-btn-next btn btn-primary" style="float: right;">下一页</button>
+    </div>
+
+{{ endblock }}

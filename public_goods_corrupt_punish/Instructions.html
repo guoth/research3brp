@@ -1,0 +1,67 @@
+{{ extends "global/Page.html" }}
+{{ block title }}实验说明{{ endblock }}
+{{ block content }}
+
+<p>
+    你将匿名参与多轮游戏，<strong>每轮游戏规则可能不同</strong>，你的决策会影响自己和他人的收益，且无对错之分，请仔细阅读并理解每轮规则。
+</p>
+
+<p>
+    <strong>本轮游戏规则如下图：</strong>
+</p>
+<div class="rule-image-container">
+    <img src="{% static '第三方奖惩并用（有行贿）.jpg' %}" alt="游戏规则" class="rule-image">
+</div>
+
+
+
+<p style="margin-top: 30px;">
+    接下来你需要回答4道问题，以验证你是否已经理解规则。
+    <strong>请确认你已完全理解规则内容。进入下一步后将无法返回查看，且需全部答对方可继续。公式无需强行记忆，理解即可。</strong>
+</p>
+
+<button class="otree-btn-next btn btn-primary" type="submit">下一步</button>
+
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    .otree-title,
+    h1 {
+        visibility: hidden !important;
+    }
+
+    body {
+        margin-top: -30px !important;
+    }
+
+    .container {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .otree-btn-next {
+        float: right !important;
+        margin-top: 15px !important;
+    }
+
+    .rule-image-container {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .rule-image {
+        max-width: 100%;
+        max-height: 50vh;
+        height: auto;
+        width: auto;
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+</style>
+{{ endblock }}

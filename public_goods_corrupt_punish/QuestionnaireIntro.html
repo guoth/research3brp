@@ -1,0 +1,15 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}{{ endblock }}
+
+{{ block content }}
+<style>
+    /* 隐藏顶部默认标题区域和计时器 */
+    .otree-title, h1 { visibility: hidden !important; }
+    .otree-timer { display: none !important; }
+</style>
+
+<div style="text-align: center; margin-top: 50px;">
+    <h3>实验部分已完成，正在加载问卷填写部分，请勿关闭页面</h3>
+</div>
+{{ endblock }}
