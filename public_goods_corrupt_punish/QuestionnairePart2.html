@@ -5,22 +5,31 @@
 {{ block content }}
 <style>
     /* 保持顶部间距一致 */
-    .otree-title, h1 { visibility: hidden !important; }
-    
+    .otree-title,
+    h1 {
+        visibility: hidden !important;
+    }
+
     /* 缩小表单项之间的间距以避免滚动 */
-    .mb-3 { margin-bottom: 8px !important; }
-    .form-group { margin-bottom: 8px !important; }
+    .mb-3 {
+        margin-bottom: 8px !important;
+    }
+
+    .form-group {
+        margin-bottom: 8px !important;
+    }
 
     /* 将单选项变成横向排列 */
-    .form-check { 
-        display: inline-block; 
-        margin-right: 20px; 
+    .form-check {
+        display: inline-block;
+        margin-right: 20px;
         margin-bottom: 0;
     }
-    
-    .form-label, label { 
-        margin-bottom: 2px !important; 
-        font-size: 1rem; 
+
+    .form-label,
+    label {
+        margin-bottom: 2px !important;
+        font-size: 1rem;
         font-weight: normal;
     }
 </style>
@@ -28,40 +37,83 @@
 <!-- 自定义字号略大一点点的标题 -->
 <h4 style="margin-bottom: 20px; font-weight: normal; font-size: 1.25rem;">问卷第二部分：请您回忆刚才的感受，完成以下游戏体验评估</h4>
 
-    {{ formfield 'is_real_player' }}
-    {{ formfield 'careful_completion_check' }}
+{{ formfield 'is_real_player' }}
+{{ formfield 'careful_completion_check' }}
 
-    <div class="mb-3 _formfield">
-        <label class="form-label" style="margin-bottom: 10px !important;">3. 在决定向公共池投入多少代币时，我会优先考虑：</label>
-        
-        <div style="display: flex; justify-content: space-between; position: relative; max-width: 650px; margin-top: 15px; padding-left: 10px;">
-            
-            <!-- 贯穿选项的横线 -->
-            <div style="position: absolute; top: 23px; left: 7%; right: 7%; height: 2px; background-color: #6c757d; z-index: 1;"></div>
-            
-            {% for choice in form.contribution_decision_priority %}
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
-                {{ choice.tag }}
-                <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
-                <label for="{{ choice.id_for_label }}" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
-                    {{ choice.choice_label }}
-                    {% if choice.value == 1 %}
-                        <br><span style="font-size: 0.85rem; color: #212529;">个人收益<br>最大化</span>
-                    {% elif choice.value == 4 %}
-                        <br><span style="font-size: 0.85rem; color: #212529;">两者考虑程度<br>相当</span>
-                    {% elif choice.value == 7 %}
-                        <br><span style="font-size: 0.85rem; color: #212529;">大多数人认为<br>应该的做法</span>
-                    {% endif %}
-                </label>
-            </div>
-            {% endfor %}
-            
+<div class="mb-3 _formfield">
+    <label class="form-label" style="margin-bottom: 10px !important;">3. 在第二轮中，决定向公共池投入多少代币时，我优先考虑了：</label>
+
+    <div
+        style="display: flex; justify-content: space-between; position: relative; max-width: 650px; margin-top: 15px; padding-left: 10px;">
+
+        <!-- 贯穿选项的横线 -->
+        <div
+            style="position: absolute; top: 23px; left: 7%; right: 7%; height: 2px; background-color: #6c757d; z-index: 1;">
         </div>
-        {{ formfield_errors 'contribution_decision_priority' }}
-    </div>
 
-    <div style="margin-top: 30px;">
-        <button class="otree-btn-next btn btn-primary" style="float: right;">下一页</button>
+        <!-- Option 1 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="1" id="c1" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c1" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                1<br><span style="font-size: 0.85rem; color: #212529;">个人收益<br>最大化</span>
+            </label>
+        </div>
+        <!-- Option 2 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="2" id="c2" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c2" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                2
+            </label>
+        </div>
+        <!-- Option 3 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="3" id="c3" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c3" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                3
+            </label>
+        </div>
+        <!-- Option 4 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="4" id="c4" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c4" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                4<br><span style="font-size: 0.85rem; color: #212529;">两者考虑程度<br>相当</span>
+            </label>
+        </div>
+        <!-- Option 5 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="5" id="c5" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c5" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                5
+            </label>
+        </div>
+        <!-- Option 6 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="6" id="c6" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c6" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                6
+            </label>
+        </div>
+        <!-- Option 7 -->
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; z-index: 2;">
+            <input type="radio" name="contribution_decision_priority" value="7" id="c7" class="form-check-input" style="margin: 0;" required>
+            <div style="height: 10px; width: 2px; background-color: #6c757d; margin-top: 4px;"></div>
+            <label for="c7" style="margin-top: 4px; font-weight: normal; font-size: 0.95rem; cursor: pointer; color: #212529;">
+                7<br><span style="font-size: 0.85rem; color: #212529;">大多数人认为<br>应该的做法</span>
+            </label>
+        </div>
+
     </div>
+    {{ formfield_errors 'contribution_decision_priority' }}
+</div>
+
+<div style="margin-top: 30px;">
+    <button class="otree-btn-next btn btn-primary" style="float: right;">下一页</button>
+</div>
 
 {{ endblock }}
