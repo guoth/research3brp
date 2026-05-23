@@ -166,15 +166,7 @@ class Player(BasePlayer):
     )
     contribution_decision_priority = models.IntegerField(
         label='3. 在决定向公共池投入多少代币时，我会优先考虑：',
-        choices=[
-            [1, '1 (个人收益最大化)'],
-            [2, '2'],
-            [3, '3'],
-            [4, '4 (两者考虑程度相当)'],
-            [5, '5'],
-            [6, '6'],
-            [7, '7 (大多数人认为应该的做法)'],
-        ],
+        choices=[1, 2, 3, 4, 5, 6, 7],
         widget=widgets.RadioSelectHorizontal,
     )
 

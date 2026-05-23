@@ -23,12 +23,117 @@
         font-size: 1rem; 
         font-weight: 500;
     }
+
+    /* 自定义 Likert 量表样式 */
+    .custom-likert-box {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 25px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        background-color: #fcfcfc;
+    }
+    .likert-track {
+        position: relative;
+        padding: 10px 0;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .likert-line {
+        position: absolute;
+        top: 30px;
+        left: 7%;
+        right: 7%;
+        height: 2px;
+        background-color: #d1d5db;
+        z-index: 1;
+    }
+    .likert-options-container {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 10px;
+    }
+    .likert-item {
+        text-align: center;
+        flex: 1;
+    }
+    .likert-circle-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        margin: 0 !important;
+    }
+    .likert-circle-label input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .likert-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid #d1d5db;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #4b5563;
+        transition: all 0.2s;
+    }
+    .likert-circle-label input[type="radio"]:checked + .likert-number {
+        background-color: #e5e7eb;
+        border-color: #374151;
+        color: #111827;
+        box-shadow: inset 0 0 0 1px #374151;
+    }
+    .likert-text-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.4;
+        margin-top: 5px;
+    }
 </style>
 
 <!-- 自定义字号略大一点点的标题 -->
 <h4 style="margin-bottom: 20px; font-weight: bold; font-size: 1.25rem;">问卷第二部分：请您回忆刚才的感受，完成以下游戏体验评估</h4>
 
-    {{ formfields }}
+    {{ formfield 'is_real_player' }}
+    {{ formfield 'careful_completion_check' }}
+
+    <div class="custom-likert-box">
+        <label class="form-label" style="margin-bottom: 15px !important; display: block; font-size: 1rem; font-weight: 500;">3. 在决定向公共池投入多少代币时，我会优先考虑：</label>
+        
+        <div class="likert-track">
+            <!-- 连线 -->
+            <div class="likert-line"></div>
+            
+            <div class="likert-options-container">
+                {% for choice in form.contribution_decision_priority %}
+                <div class="likert-item">
+                    <label for="{{ choice.id_for_label }}" class="likert-circle-label">
+                        {{ choice.tag }}
+                        <span class="likert-number">{{ choice.choice_label }}</span>
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="likert-text-labels">
+                <div style="text-align: left; width: 33.33%;">1: 个人收益<br>最大化</div>
+                <div style="text-align: center; width: 33.33%;">4: 两者考虑程度<br>相当</div>
+                <div style="text-align: right; width: 33.33%;">7: 大多数人认<br>为应该的做法</div>
+            </div>
+        </div>
+        {{ formfield_errors 'contribution_decision_priority' }}
+    </div>
 
     <div style="margin-top: 30px;">
         <button class="otree-btn-next btn btn-primary" style="float: right;">下一页</button>
